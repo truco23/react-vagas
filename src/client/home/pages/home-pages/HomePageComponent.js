@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import CardComponent from '../../../shared/components/card/CardComponent';
-import methods from '../../../shared/services/api/ApiMethods';
+import methods from '../../../../shared/services/api/ApiMethods';
+import CardComponent from '../../../../shared/components/card/CardComponent';
 
-class HomeComponent extends Component {
+class HomePageComponent extends Component {
 
     state = {
         categorias: [],
@@ -46,4 +46,4 @@ class HomeComponent extends Component {
     }
 }
  
-export default HomeComponent;
+export default HomePageComponent;

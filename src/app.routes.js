@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import HomeComponent from './client/pages/home/HomeComponent';
-import VagasDetalhesComponent from './client/pages/vagas/VagasDetalhesComponent';
+import HomePageComponent from './client/home/pages/home-pages/HomePageComponent';
+import VagasRoutes from './client/vagas/vagas.routes';
 
 const AppRoutes = () => (
     <BrowserRouter>
         <Switch>
-            <Route exact path="/" component={ HomeComponent } />
-            <Route path="/vagas/:id" component={ VagasDetalhesComponent } />
+            <Route exact path="/" component={ HomePageComponent } />
+            <VagasRoutes /> 
         </Switch>
     </BrowserRouter>
 )

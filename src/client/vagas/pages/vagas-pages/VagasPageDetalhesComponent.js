@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 
-import CardComponent from '../../../shared/components/card/CardComponent';
-import methods from '../../../shared/services/api/ApiMethods';
+import methods from '../../../../shared/services/api/ApiMethods';
+import CardComponent from '../../../../shared/components/card/CardComponent';
 
-class VagasDetalhesComponent extends Component {
+class VagasPageDetalhesComponent extends Component {
     
     state = {
         vaga: []
     }
-    async componentDidMount() {
+     componentDidMount() {
 
         const { id } = this.props.match.params;
-        const vagas = await methods.vagas();
+        const vagas =  methods.vagas();
         
-        await vagas.forEach(vaga => {
+        vagas.forEach(vaga => {
 
-            if(vaga.id == id) {
+            if(vaga.id === parseInt(id)) {
                 this.setState({ vaga })
                 return vaga;
             }
@@ -35,5 +35,4 @@ class VagasDetalhesComponent extends Component {
     }
 }
  
-export default VagasDetalhesComponent
-;
+export default VagasPageDetalhesComponent;
