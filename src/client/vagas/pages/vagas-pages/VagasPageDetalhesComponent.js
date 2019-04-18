@@ -8,10 +8,10 @@ class VagasPageDetalhesComponent extends Component {
     state = {
         vaga: []
     }
-     componentDidMount() {
+    async componentDidMount() {
 
         const { id } = this.props.match.params;
-        const vagas =  methods.vagas();
+        const vagas =  await methods.vagas();
         
         vagas.forEach(vaga => {
 
@@ -26,11 +26,15 @@ class VagasPageDetalhesComponent extends Component {
 
     render() { 
         const { title, description } = this.state.vaga;
-        return (  
-            <CardComponent  
-                title={ title }
-                description={ description }
-            />
+        return (
+            <section className="container"> 
+                <a onClick={ this.props.history.goBack } className="btn btn-primary mb-2 text-white">Voltar</a>
+
+                <CardComponent  
+                    title={ title }
+                    description={ description }
+                />
+            </section>  
         );
     }
 }
