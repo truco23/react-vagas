@@ -14,9 +14,13 @@ class HomePageComponent extends Component {
 
     async componentDidMount() {
 
-        let vagas = await apiMethods.vagas();
+        let vagas = await apiMethods.vagas('vagas');
         this.setState({ vagas });
         console.log(vagas);
+
+        let categorias = await apiMethods.vagas('categorias');
+        this.setState({ categorias });
+        console.log(categorias);
     }
     
     render() { 
@@ -28,11 +32,11 @@ class HomePageComponent extends Component {
                         vagas.length && vagas.map(vaga => {
 
                             return(
-                                <li key={ vaga.id } className="mt-2">
+                                <li key={ vaga._id } className="mt-2">
                                     <CardComponent  
                                         title={ vaga.title }
                                         description={ vaga.description }
-                                        id={ `vagas/${ vaga.id }` }
+                                        id={ `vagas/${ vaga._id }` }
                                     />
                                 </li>
                             )
