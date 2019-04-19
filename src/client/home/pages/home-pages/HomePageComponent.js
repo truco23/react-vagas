@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
-import methods from '../../../../shared/services/api/ApiMethods';
+import ApiMethods from '../../../../shared/services/api/ApiMethods';
 import CardComponent from '../../../../shared/components/card/CardComponent';
+
+const apiMethods = new ApiMethods();
 
 class HomePageComponent extends Component {
 
@@ -12,13 +14,9 @@ class HomePageComponent extends Component {
 
     async componentDidMount() {
 
-        let categorias = await methods.categorias();
-        this.setState({ categorias })
-        console.log(this.state.categorias);
-
-        let vagas = await methods.vagas();
+        let vagas = await apiMethods.vagas();
         this.setState({ vagas });
-        console.log(this.state.vagas);
+        console.log(vagas);
     }
     
     render() { 

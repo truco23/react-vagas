@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
-import methods from '../../../../shared/services/api/ApiMethods';
 import CardComponent from '../../../../shared/components/card/CardComponent';
+import ApiMethods from '../../../../shared/services/api/ApiMethods';
+
+const apiMethods = new ApiMethods();
 
 class VagasPageDetalhesComponent extends Component {
     
@@ -11,7 +13,7 @@ class VagasPageDetalhesComponent extends Component {
     async componentDidMount() {
 
         const { id } = this.props.match.params;
-        const vagas =  await methods.vagas();
+        const vagas =  await apiMethods.vagas();
         
         vagas.forEach(vaga => {
 
