@@ -1,16 +1,16 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import HomePageComponent from './client/home/pages/home-pages/HomePageComponent';
 import VagasRoutes from './client/vagas/vagas.routes';
+import HomeRoutes from './client/home/home.routes';
 
 const AppRoutes = () => (
-    <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={ HomePageComponent } />
+    <Suspense fallback={ '<h1>Carregando, aguarde...</h1>' }>
+        <BrowserRouter>
+            <HomeRoutes />
             <VagasRoutes /> 
-        </Switch>
-    </BrowserRouter>
+        </BrowserRouter>
+    </Suspense>
 )
 
 export default AppRoutes;
