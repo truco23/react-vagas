@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import ApiMethods from '../../../../shared/services/api/ApiMethods';
 import CardComponent from '../../../../shared/components/card/CardComponent';
+import JumbotronComponent from '../../../../shared/components/jumbotron/JumbotronComponent';
 
 const apiMethods = new ApiMethods();
 
@@ -27,12 +28,14 @@ class HomePageComponent extends Component {
         const { vagas } = this.state;
         return (  
             <section className="container">
-                <ul className="list-unstyled">
+                <JumbotronComponent title="Vagas em aberto" />
+
+                <ul className="list-unstyled row">
                     {
                         vagas.length && vagas.map(vaga => {
 
                             return(
-                                <li key={ vaga._id } className="mt-2">
+                                <li key={ vaga._id } className="mt-2 col-sm-12 col-md-6 col-lg-4">
                                     <CardComponent  
                                         title={ vaga.title }
                                         description={ vaga.description }
