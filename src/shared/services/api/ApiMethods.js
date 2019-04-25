@@ -4,19 +4,7 @@ const api = apiUrl;
 
 class ApiMethods {
     
-    categorias(path) {
-
-        return fetch(`${ api }/${ path }`)
-            .then(res => {
-                if(!res.ok) {
-                    throw res;
-                } else {
-                    return res.json();
-                }
-            });
-    };
-
-    vagas(path) {
+    get(path) {
 
         return fetch(`${ api }/${ path }`)
             .then(res => {

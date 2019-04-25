@@ -9,19 +9,14 @@ const apiMethods = new ApiMethods();
 class HomePageComponent extends Component {
 
     state = {
-        categorias: [],
         vagas: []
     };
 
     async componentDidMount() {
 
-        let vagas = await apiMethods.vagas('vagas');
+        let vagas = await apiMethods.get('vagas');
         this.setState({ vagas });
         console.log(vagas);
-
-        let categorias = await apiMethods.vagas('categorias');
-        this.setState({ categorias });
-        console.log(categorias);
     }
     
     render() { 
@@ -32,7 +27,7 @@ class HomePageComponent extends Component {
 
                 <ul className="list-unstyled row">
                     {
-                        vagas.length && vagas.map(vaga => {
+                        vagas && vagas.map(vaga => {
 
                             return(
                                 <li key={ vaga._id } className="mt-2 col-sm-12 col-md-6 col-lg-4">
