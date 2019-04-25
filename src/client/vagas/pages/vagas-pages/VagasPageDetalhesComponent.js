@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
-import CardComponent from '../../../../shared/components/card/CardComponent';
 import ApiMethods from '../../../../shared/services/api/ApiMethods';
+import CardDetailsComponent from '../../../../shared/components/card/CardDetailsComponent';
+import JumbotronComponent from '../../../../shared/components/jumbotron/JumbotronComponent';
 
 const apiMethods = new ApiMethods();
 
@@ -31,9 +31,11 @@ class VagasPageDetalhesComponent extends Component {
         const { title, description } = this.state.vaga;
         return (
             <section className="container"> 
-                <Link onClick={ this.props.history.goBack } className="btn btn-primary mb-2 text-white">Voltar</Link>
+                <JumbotronComponent title="Detalhes da vaga" />
 
-                <CardComponent  
+                <button onClick={ this.props.history.goBack } className="btn btn-primary mb-2 text-white">Voltar</button>
+
+                <CardDetailsComponent  
                     title={ title }
                     description={ description }
                 />
