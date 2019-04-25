@@ -1,19 +1,42 @@
 import React, { Component } from 'react';
 
 class FormLoginComponent extends Component {
-    state = {  }
+    
+    state = {
+
+        email: '',
+        password: ''
+    };
+
+    handleSubmit = e => {
+
+        e.preventDefault();
+
+        console.log('cadastro');
+        console.log(this.state.email);
+        console.log(this.state.password);
+    };
+
+    handleInputChange = e => {
+
+        let input = e.target.name;
+        let value = e.target.value;
+        
+        this.setState({ [input]: value })
+    };
+
     render() { 
         return (  
-            <form>
+            <form onSubmit={ this.handleSubmit.bind(this) }>
                 <fieldset>
                     <div className="form-group">
-                        <label for="email">Digite o seu e-mail</label>
-                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Digite o seu e-mail aqui" />
+                        <label htmlFor="email">Digite o seu e-mail</label>
+                        <input type="email" className="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Digite o seu e-mail aqui" onChange={ this.handleInputChange.bind(this) } />
                         <small id="emailHelp" className="form-text text-muted">E-mail obrigatório</small>
                     </div>
                     <div className="form-group">
-                        <label for="password">Digite a sua senha</label>
-                        <input type="password" className="form-control" id="password" placeholder="Password" aria-describedby="passwordHelp" />
+                        <label htmlFor="password">Digite a sua senha</label>
+                        <input type="password" className="form-control" name="password" id="password" placeholder="Password" aria-describedby="passwordHelp" onChange={ this.handleInputChange.bind(this) } />
                         <small id="passwordHelp" className="form-text text-muted">Senha obrigatório</small>
                     </div>
                 </fieldset>

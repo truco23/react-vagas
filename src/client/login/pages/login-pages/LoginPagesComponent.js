@@ -5,7 +5,7 @@ class LoginPagesComponent extends Component {
     
     render() { 
         return (  
-            <section>
+            <section className="container">
                 <FormLoginComponent />
             </section>
         );
