@@ -20,6 +20,18 @@ class ApiMethods {
                 return erro.message;
             });
     };
+
+    post(path, ...params) {
+
+        console.log('fazendo um post para ' + path);
+        console.log(params);
+
+        return fetch(`${ apiUrl }/${ path }`, {
+
+        })
+        .then()
+        .catch(erro => console.log(erro.message))
+    }
 }
  
 export default ApiMethods;

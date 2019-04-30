@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import ApiMethods from '../../../../shared/services/api/ApiMethods';
+
+const apiMethodos = new ApiMethods();
 
 class FormLoginComponent extends Component {
     
@@ -15,6 +18,8 @@ class FormLoginComponent extends Component {
         console.log('cadastro');
         console.log(this.state.email);
         console.log(this.state.password);
+
+        apiMethodos.post('admin', this.state.email, this.state.password);
     };
 
     handleInputChange = e => {
