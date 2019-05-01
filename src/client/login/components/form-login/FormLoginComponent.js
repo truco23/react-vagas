@@ -11,7 +11,7 @@ class FormLoginComponent extends Component {
         password: ''
     };
 
-    handleSubmit = e => {
+    handleSubmit = async e => {
 
         e.preventDefault();
 
@@ -19,7 +19,8 @@ class FormLoginComponent extends Component {
         console.log(this.state.email);
         console.log(this.state.password);
 
-        apiMethodos.post('admin', this.state.email, this.state.password);
+        const login = await apiMethodos.post('admin', {email: this.state.email, password: this.state.password});
+        console.log(login);
     };
 
     handleInputChange = e => {

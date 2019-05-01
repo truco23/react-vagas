@@ -23,13 +23,24 @@ class ApiMethods {
 
     post(path, ...params) {
 
+        const { email, password } = params[0];
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+        const body = JSON.stringify({email, password});
+
         console.log('fazendo um post para ' + path);
-        console.log(params);
-
+        console.log(email);
+        console.log(password);
+        
         return fetch(`${ apiUrl }/${ path }`, {
-
+            headers,  
+            method: 'POST',
+            body    
         })
-        .then()
+        .then(res => res.json())
+        .then(res => res)
         .catch(erro => console.log(erro.message))
     }
 }
