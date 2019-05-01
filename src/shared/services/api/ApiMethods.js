@@ -29,10 +29,6 @@ class ApiMethods {
             'Content-Type': 'application/json'
         };
         const body = JSON.stringify({email, password});
-
-        console.log('fazendo um post para ' + path);
-        console.log(email);
-        console.log(password);
         
         return fetch(`${ apiUrl }/${ path }`, {
             headers,  

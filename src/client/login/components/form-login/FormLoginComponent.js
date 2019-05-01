@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+
 import ApiMethods from '../../../../shared/services/api/ApiMethods';
+import LocalStorageService from '../../../../shared/services/localStorage/LocalStorageService';
 
 const apiMethodos = new ApiMethods();
+const localStorageService = new LocalStorageService();
 
 class FormLoginComponent extends Component {
-    
-    state = {
 
+    state = {
         email: '',
         password: ''
     };
@@ -15,12 +17,14 @@ class FormLoginComponent extends Component {
 
         e.preventDefault();
 
-        console.log('cadastro');
-        console.log(this.state.email);
-        console.log(this.state.password);
-
-        const login = await apiMethodos.post('admin', {email: this.state.email, password: this.state.password});
-        console.log(login);
+        try {
+            const login = await apiMethodos.post('admin', {email: this.state.email, password: this.state.password});
+            const token = login.token;
+            localStorageService.setToken(token);
+            this.props.props.history.push('/vagas');            
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     handleInputChange = e => {
