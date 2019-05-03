@@ -10,7 +10,8 @@ class FormLoginComponent extends Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        fail: []
     };
 
     handleSubmit = async e => {
@@ -20,8 +21,15 @@ class FormLoginComponent extends Component {
         try {
             const login = await apiMethodos.post('admin', {email: this.state.email, password: this.state.password});
             const token = login.token;
+
+            if (login.fail) {
+                this.setState({ fail: login.fail });    
+                return
+            };
+            
             localStorageService.setToken(token);
             this.props.props.history.push('/vagas');            
+            
         } catch (error) {
             console.log(error);
         }
@@ -36,25 +44,29 @@ class FormLoginComponent extends Component {
     };
 
     render() { 
+        const { fail } = this.state;
         return (  
-            <form onSubmit={ this.handleSubmit.bind(this) }>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="email">Digite o seu e-mail</label>
-                        <input type="email" className="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Digite o seu e-mail aqui" onChange={ this.handleInputChange.bind(this) } />
-                        <small id="emailHelp" className="form-text text-muted">E-mail obrigatório</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Digite a sua senha</label>
-                        <input type="password" className="form-control" name="password" id="password" placeholder="Password" aria-describedby="passwordHelp" onChange={ this.handleInputChange.bind(this) } />
-                        <small id="passwordHelp" className="form-text text-muted">Senha obrigatório</small>
-                    </div>
-                </fieldset>
+            <div>
+                <p className={`${ fail.length ? 'alert alert-danger' : 'd-none' }`}>{ this.state.fail }</p>
+                <form onSubmit={ this.handleSubmit.bind(this) }>
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="email">Digite o seu e-mail</label>
+                            <input type="email" className="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Digite o seu e-mail aqui" onChange={ this.handleInputChange.bind(this) } />
+                            <small id="emailHelp" className="form-text text-muted">E-mail obrigatório</small>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Digite a sua senha</label>
+                            <input type="password" className="form-control" name="password" id="password" placeholder="Password" aria-describedby="passwordHelp" onChange={ this.handleInputChange.bind(this) } />
+                            <small id="passwordHelp" className="form-text text-muted">Senha obrigatório</small>
+                        </div>
+                    </fieldset>
 
-                <fieldset>
-                    <button type="submit" className="btn btn-primary">Entrar</button>
-                </fieldset>
-            </form>
+                    <fieldset>
+                        <button type="submit" className="btn btn-primary">Entrar</button>
+                    </fieldset>
+                </form>
+            </div>
         );
     }
 }
