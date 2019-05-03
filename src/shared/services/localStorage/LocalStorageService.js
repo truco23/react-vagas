@@ -13,6 +13,10 @@ class LocalStorageService {
     hasToken() {
         return this.getToken();
     };
+
+    removeToken() {
+        window.localStorage.removeItem(key);
+    };
 }
 
 export default LocalStorageService;

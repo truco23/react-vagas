@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ApiMethods from '../../../../shared/services/api/ApiMethods';
 import CardComponent from '../../../../shared/components/card/CardComponent';
 import JumbotronComponent from '../../../../shared/components/jumbotron/JumbotronComponent';
+import MenuComponent from '../../../../shared/components/menu/MenuComponent';
 
 const apiMethods = new ApiMethods();
 
@@ -21,8 +22,10 @@ class HomePageComponent extends Component {
     
     render() { 
         const { vagas } = this.state;
+
         return (  
             <section className="container">
+                <MenuComponent />
                 <JumbotronComponent title="Vagas em aberto" />
 
                 <ul className="list-unstyled row">

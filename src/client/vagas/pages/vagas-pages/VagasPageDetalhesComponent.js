@@ -10,7 +10,8 @@ class VagasPageDetalhesComponent extends Component {
     
     state = {
         vaga: []
-    }
+    };
+
     async componentDidMount() {
 
         const { id } = this.props.match.params;
@@ -29,6 +30,7 @@ class VagasPageDetalhesComponent extends Component {
 
     render() { 
         const { title, description } = this.state.vaga;
+
         return (
             <section className="container"> 
                 <JumbotronComponent title="Detalhes da vaga" />
