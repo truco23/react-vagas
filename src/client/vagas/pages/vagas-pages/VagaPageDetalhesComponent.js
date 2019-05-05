@@ -6,16 +6,16 @@ import JumbotronComponent from '../../../../shared/components/jumbotron/Jumbotro
 
 const apiMethods = new ApiMethods();
 
-class VagasPageDetalhesComponent extends Component {
+class VagaPageDetalhesComponent extends Component {
     
     state = {
         vaga: []
     };
 
     async componentDidMount() {
-
+        
         const { id } = this.props.match.params;
-        const vagas =  await apiMethods.vagas('vagas');
+        const vagas =  await apiMethods.get('vagas');
 
         vagas.forEach(vaga => {
 
@@ -46,4 +46,4 @@ class VagasPageDetalhesComponent extends Component {
     }
 }
  
-export default VagasPageDetalhesComponent;
+export default VagaPageDetalhesComponent;

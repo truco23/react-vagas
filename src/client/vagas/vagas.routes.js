@@ -1,10 +1,12 @@
 import React, { lazy } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-const VagasPageDetalhesComponent = lazy(() => import('./pages/vagas-pages/VagasPageDetalhesComponent'));
+const VagaPageDetalhesComponent = lazy(() => import('./pages/vagas-pages/VagaPageDetalhesComponent'));
 const VagasRoutes = () => (
         <Route>
-            <Route path="/vagas/:id" component={ VagasPageDetalhesComponent } />
+            <Switch>
+                <Route path="/vaga/:id" component={ VagaPageDetalhesComponent } />
+            </Switch>
         </Route>
 );
 
