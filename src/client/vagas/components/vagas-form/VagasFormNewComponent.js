@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import VagasInputComponent from '../vagas-input/VagasInputComponent';
 import SelectComponent from '../../../../shared/components/select/SelectComponent';
 import LocalStorageService from '../../../../shared/services/localStorage/LocalStorageService';
+import ApiMethods from '../../../../shared/services/api/ApiMethods';
 
 const apiLocalStorage = new LocalStorageService();
+const apiMethods = new ApiMethods();
 
 class VagasFormNewComponent extends Component {
     
@@ -20,15 +22,26 @@ class VagasFormNewComponent extends Component {
 
         const token = apiLocalStorage.getToken();
         this.setState({ token });
-    
-    }
+    };
 
-    handleSubmit = e => {
+    handleSubmit = async e => {
 
         e.preventDefault();
-        console.log('cadastro');
+
+        try {
+            
+            const response = await apiMethods.post('vagas', this.state);
+            
+            if(response.fail) {
+                
+                console.log(response);
+                return;
+            };
+            this.props.props.history.push('/vagas')
+        } catch (error) {
+            console.log(error.message);
+        };
         
-        console.log(this.state);
     };
 
     handleInputChange = e => {

@@ -12,7 +12,7 @@ class VagaPageNewComponent extends Component {
                 <MenuComponent />
                 <JumbotronComponent title="Cadastro de vaga" />
 
-                <VagasFormNewComponent />
+                <VagasFormNewComponent props={ this.props } />
             </section>
         );
     }
