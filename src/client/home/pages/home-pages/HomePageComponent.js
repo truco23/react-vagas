@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import ApiMethods from '../../../../shared/services/api/ApiMethods';
 import CardComponent from '../../../../shared/components/card/CardComponent';
@@ -27,6 +28,9 @@ class HomePageComponent extends Component {
             <section className="container">
                 <MenuComponent />
                 <JumbotronComponent title="Vagas em aberto" />
+
+
+                <Link to="/vaga/new" className="btn btn-success">Cadastrar</Link>
 
                 <ul className="list-unstyled row">
                     {

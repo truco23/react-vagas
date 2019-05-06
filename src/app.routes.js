@@ -6,6 +6,7 @@ import HomeRoutes from './client/home/home.routes';
 import LoginRoutes from './client/login/login.routes';
 const LoginPagesComponent = lazy(() => import('./client/login/pages/login-pages/LoginPagesComponent'));
 const HomePageComponent = lazy(() => import('./client/home/pages/home-pages/HomePageComponent'));
+const VagaPageNewComponent = lazy(() => import('./client/vagas/pages/vagas-pages/VagaPageNewComponent'));
 const VagaPageDetalhesComponent = lazy(() => import('./client/vagas/pages/vagas-pages/VagaPageDetalhesComponent'));
 
 export default class AppRoutes extends Component {
@@ -17,6 +18,7 @@ export default class AppRoutes extends Component {
                     <Switch>
                         <Route exact path="/" component={ LoginPagesComponent } />
                         <Route path="/vagas" component={ HomePageComponent } />
+                        <Route path="/vaga/new" component={ VagaPageNewComponent } />
                         <Route path="/vaga/:id" component={ VagaPageDetalhesComponent } />
                             {/* <LoginRoutes />
                             <HomeRoutes />

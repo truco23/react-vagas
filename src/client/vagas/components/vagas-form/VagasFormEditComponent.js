@@ -34,8 +34,12 @@ class VagaFormEditComponent extends Component {
         
         e.preventDefault();
 
-        await apiMethods.put('vagas', this.state)
-        this.props.props.history.push('/vagas');
+        try {
+            await apiMethods.put('vagas', this.state);
+            this.props.props.history.push('/vagas');
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     handleInputChange = e => {
