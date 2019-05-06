@@ -15,24 +15,23 @@ class SelectComponent extends Component {
         const categorias = await apiMethods.get('categorias');
         this.setState({ categorias })    
         console.log(this.state.categorias);
-    }
+    };
     
     render() { 
         const { categorias } = this.state;
-        const { idCategory } =  this.props;
-        const selected = false;
+        const { idCategory, onchange } =  this.props;
 
         return (  
             <div className="form-group">
             { idCategory }
-                <select className="form-control" name="categoria">
+                <select className="form-control" name="idCategory" onChange={ onchange }>
                     <option value="">Selecione um categoria</option>
                     {
                         categorias.length && categorias.map(categoria => (
                             <option 
                                 selected={ categoria._id === idCategory }
                                 key={ categoria._id } 
-                                value={ categoria.name.toLowerCase() }>
+                                value={ categoria._id }>
                                 { categoria.name }
                             </option>
                         ))

@@ -28,7 +28,7 @@ class VagaPageDetalhesComponent extends Component {
 
                 <button onClick={ this.props.history.goBack } className="btn btn-primary mb-2 text-white">Voltar</button>
 
-                <VagasFormEditComponent vaga={ vaga }  />
+                <VagasFormEditComponent props={ this.props } vaga={ vaga }  />
             </section>  
         );
     }
