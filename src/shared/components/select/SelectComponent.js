@@ -23,7 +23,6 @@ class SelectComponent extends Component {
 
         return (  
             <div className="form-group">
-            { idCategory }
                 <select className="form-control" name="idCategory" onChange={ onchange }>
                     <option value="">Selecione um categoria</option>
                     {

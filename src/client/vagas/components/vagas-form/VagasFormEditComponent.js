@@ -1,36 +1,47 @@
 import React, { Component } from 'react';
+
 import VagasInputComponent from '../vagas-input/VagasInputComponent';
 import SelectComponent from '../../../../shared/components/select/SelectComponent';
 import ApiMethods from '../../../../shared/services/api/ApiMethods';
+import LocalStorageService from '../../../../shared/services/localStorage/LocalStorageService';
 
 const apiMethods = new ApiMethods();
+const methodsLocalStorage = new LocalStorageService();
 
 class VagaFormEditComponent extends Component {
     
     state = {
 
+        _id: '',
         title: '',
         description: '',
-        idCategory: ''
+        idCategory: '',
+        token: ''
     };
 
     async componentDidMount() {
 
         const { id } = this.props.props.match.params;
         const vaga = await apiMethods.get(`vagas/${ id }`);
-        const { title, description, idCategory } = vaga;
+        const { _id, title, description, idCategory } = vaga;
+        const token = methodsLocalStorage.getToken();
         
-        this.setState({ title, description, idCategory });
+        this.setState({ _id, title, description, idCategory });
+        this.setState({ token });
     }
     
-    handleSubmit = e => {
+    handleSubmit = async e => {
         
         e.preventDefault();
         console.log('Editar');
 
-        console.log(this.state.title);
-        console.log(this.state.description);
-        console.log(this.state.idCategory);
+        await apiMethods.put('vagas', this.state)
+
+        console.log('Tudo certo ir para listagem');
+        console.log(this.props);
+        
+        this.props.props.history.push('/vagas');
+        
     };
 
     handleInputChange = e => {
