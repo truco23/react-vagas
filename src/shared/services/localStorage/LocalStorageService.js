@@ -17,6 +17,10 @@ class LocalStorageService {
     removeToken() {
         window.localStorage.removeItem(key);
     };
+
+    isLogged() {
+        return this.hasToken();
+    }
 }
 
 export default LocalStorageService;

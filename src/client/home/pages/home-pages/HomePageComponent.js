@@ -37,7 +37,7 @@ class HomePageComponent extends Component {
                                     <CardComponent  
                                         title={ vaga.title }
                                         description={ vaga.description }
-                                        id={ `vagas/${ vaga._id }` }
+                                        id={ `/vaga/${ vaga._id }` }
                                     />
                                 </li>
                             )

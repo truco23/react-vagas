@@ -1,10 +1,12 @@
 import React, { lazy } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 const HomePageComponent = lazy(() => import('./pages/home-pages/HomePageComponent'));
 const HomeRoutes = () => (
     <Route>
-        <Route path="/vagas" component={ HomePageComponent } />
+        <Switch>
+            <Route path="/vagas" component={ HomePageComponent } />
+        </Switch>
     </Route>
 );
 
