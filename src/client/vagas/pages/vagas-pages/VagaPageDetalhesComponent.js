@@ -7,20 +7,8 @@ import VagasFormEditComponent from '../../components/vagas-form/VagasFormEditCom
 const apiMethods = new ApiMethods();
 
 class VagaPageDetalhesComponent extends Component {
-    
-    state = {
-        vaga: []
-    };
-
-    async componentDidMount() {
-        
-        const { id } = this.props.match.params;
-        const vaga =  await apiMethods.get(`vagas/${ id }`);
-        this.setState({ vaga });
-    };
 
     render() { 
-        const { vaga } = this.state;
 
         return (
             <section className="container"> 
@@ -28,7 +16,7 @@ class VagaPageDetalhesComponent extends Component {
 
                 <button onClick={ this.props.history.goBack } className="btn btn-primary mb-2 text-white">Voltar</button>
 
-                <VagasFormEditComponent props={ this.props } vaga={ vaga }  />
+                <VagasFormEditComponent props={ this.props } />
             </section>  
         );
     }

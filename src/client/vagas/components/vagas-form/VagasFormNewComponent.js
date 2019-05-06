@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 
 import VagasInputComponent from '../vagas-input/VagasInputComponent';
 import SelectComponent from '../../../../shared/components/select/SelectComponent';
-import ApiMethods from '../../../../shared/services/api/ApiMethods';
 import LocalStorageService from '../../../../shared/services/localStorage/LocalStorageService';
 
-const apiMethods = new ApiMethods();
-const methodsLocalStorage = new LocalStorageService();
+const apiLocalStorage = new LocalStorageService();
 
-class VagaFormEditComponent extends Component {
+class VagasFormNewComponent extends Component {
     
     state = {
 
-        _id: '',
         title: '',
         description: '',
         idCategory: '',
@@ -21,34 +18,25 @@ class VagaFormEditComponent extends Component {
 
     async componentDidMount() {
 
-        const { id } = this.props.props.match.params;
-        const vaga = await apiMethods.get(`vagas/${ id }`);
-        const { _id, title, description, idCategory } = vaga;
-        const token = methodsLocalStorage.getToken();
-        
-        this.setState({ _id, title, description, idCategory });
+        const token = apiLocalStorage.getToken();
         this.setState({ token });
-    }
     
-    handleSubmit = async e => {
-        
-        e.preventDefault();
+    }
 
-        try {
-            await apiMethods.put('vagas', this.state);
-            this.props.props.history.push('/vagas');
-        } catch (error) {
-            console.log(error);
-        }
+    handleSubmit = e => {
+
+        e.preventDefault();
+        console.log('cadastro');
+        
+        console.log(this.state);
     };
 
     handleInputChange = e => {
-        
+
         this.setState({ [e.target.name]: e.target.value });
-    };
+    }
 
     render() { 
-
         return (  
             <form onSubmit={ this.handleSubmit.bind(this) } >
                 <fieldset>
@@ -79,7 +67,7 @@ class VagaFormEditComponent extends Component {
                     />
 
                     <SelectComponent 
-                        idCategory={ this.state.idCategory } 
+                        idCategory=''
                         onchange={ this.handleInputChange.bind(this) } 
                     />
 
@@ -93,4 +81,4 @@ class VagaFormEditComponent extends Component {
     }
 }
  
-export default VagaFormEditComponent;
+export default VagasFormNewComponent;

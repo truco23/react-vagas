@@ -5,13 +5,16 @@ import ApiMethods from '../../../../shared/services/api/ApiMethods';
 import CardComponent from '../../../../shared/components/card/CardComponent';
 import JumbotronComponent from '../../../../shared/components/jumbotron/JumbotronComponent';
 import MenuComponent from '../../../../shared/components/menu/MenuComponent';
+import LocalStorageService from '../../../../shared/services/localStorage/LocalStorageService';
 
 const apiMethods = new ApiMethods();
+const apiLocalStorage = new LocalStorageService();
 
 class HomePageComponent extends Component {
 
     state = {
-        vagas: []
+        vagas: [],
+        token: ''
     };
 
     async componentDidMount() {
@@ -19,18 +22,27 @@ class HomePageComponent extends Component {
         let vagas = await apiMethods.get('vagas');
         this.setState({ vagas });
         console.log(vagas);
+
+        const token = apiLocalStorage.getToken();
+        if(token) {
+            this.setState({ token });
+        }
     }
     
     render() { 
-        const { vagas } = this.state;
+        const { vagas, token } = this.state;
 
         return (  
             <section className="container">
                 <MenuComponent />
                 <JumbotronComponent title="Vagas em aberto" />
 
-
-                <Link to="/vaga/new" className="btn btn-success">Cadastrar</Link>
+                {
+                    token
+                    ? <Link to="/vaga/new" className="btn btn-success">Cadastrar</Link>
+                    : ''
+                }
+                
 
                 <ul className="list-unstyled row">
                     {
