@@ -61,9 +61,6 @@ class ApiMethods {
 
     put(path, ...params) {
 
-        console.log('Atualizando');
-        console.log(params);
-        
         let headers = this.setHeaders(...params);
         const body = JSON.stringify(params[0])
 

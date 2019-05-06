@@ -33,23 +33,14 @@ class VagaFormEditComponent extends Component {
     handleSubmit = async e => {
         
         e.preventDefault();
-        console.log('Editar');
 
         await apiMethods.put('vagas', this.state)
-
-        console.log('Tudo certo ir para listagem');
-        console.log(this.props);
-        
         this.props.props.history.push('/vagas');
-        
     };
 
     handleInputChange = e => {
-
-        let input = e.target.name;
-        let value = e.target.value;
         
-        this.setState({ [input]: value });
+        this.setState({ [e.target.name]: e.target.value });
     };
 
     render() { 
@@ -84,7 +75,10 @@ class VagaFormEditComponent extends Component {
                         title={ this.state.description } 
                     />
 
-                    <SelectComponent idCategory={ idCategory } onchange={ this.handleInputChange.bind(this) } />
+                    <SelectComponent 
+                        idCategory={ idCategory } 
+                        onchange={ this.handleInputChange.bind(this) } 
+                    />
 
                 </fieldset>
 
