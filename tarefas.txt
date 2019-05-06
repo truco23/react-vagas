@@ -1,0 +1,14 @@
+- fazer a remoção de vagas
+- implementar o socketio no client para cadastro de vagas
+- implementar o socketio no client para alteração de vagas
+- implementar o socketio no client para remoção de vagas
+- criar sistema de mensagens
+
+- fazer a validação do formulario de cadastro
+- fazer a validação do formulario de edição
+- criar guarda de rotas
+- mudar estrutura de rotas
+- corrigir avisos
+- criar interceptors
+- mudar api para a listagem de vaga por id listar também o nome da categoria
+- verificar se api está com paginação
