@@ -18,7 +18,7 @@ class VagasFormNewComponent extends Component {
         token: ''
     };
 
-    async componentDidMount() {
+    componentDidMount() {
 
         const token = apiLocalStorage.getToken();
         this.setState({ token });
@@ -37,6 +37,7 @@ class VagasFormNewComponent extends Component {
                 console.log(response);
                 return;
             };
+            
             this.props.props.history.push('/vagas')
         } catch (error) {
             console.log(error.message);

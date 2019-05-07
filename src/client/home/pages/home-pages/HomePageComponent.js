@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import socket from 'socket.io-client'; 
 import ApiMethods from '../../../../shared/services/api/ApiMethods';
 import CardComponent from '../../../../shared/components/card/CardComponent';
 import JumbotronComponent from '../../../../shared/components/jumbotron/JumbotronComponent';
@@ -19,15 +20,36 @@ class HomePageComponent extends Component {
 
     async componentDidMount() {
 
+        
         let vagas = await apiMethods.get('vagas');
+        
         this.setState({ vagas });
         console.log(vagas);
-
+        this.realTime();
+        
         const token = apiLocalStorage.getToken();
         if(token) {
             this.setState({ token });
         }
+        
     };
+
+    realTime() {
+
+        let newList = this.state.vagas;
+        const io = socket('http://localhost:3001');
+        
+        io.on('vaga', vaga => {
+            console.log(vaga);
+            console.log(newList);
+            newList.unshift(vaga);
+            console.log(newList);
+            
+            
+            console.log('atualizar a listagem');
+            this.setState({ vagas: newList });
+        });
+    }
 
 
     handleRemove = async (id, vaga) => {
