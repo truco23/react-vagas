@@ -22,7 +22,7 @@ class CardComponent extends Component {
     }
     
     render() { 
-        const { id, title, description } = this.props;
+        const { id, title, description, remove } = this.props;
         const { logged } = this.state;
 
         return (  
@@ -36,7 +36,7 @@ class CardComponent extends Component {
                         logged
                         ? <div>
                             <Link to={ `${ id }` } className="btn btn-info col-6">Editar</Link>
-                            <button className="btn btn-danger col-6">Remover</button>
+                            <button className="btn btn-danger col-6" onClick={ remove }>Remover</button>
                         </div>
                         : ''
                     }

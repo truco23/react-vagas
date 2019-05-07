@@ -27,6 +27,31 @@ class HomePageComponent extends Component {
         if(token) {
             this.setState({ token });
         }
+    };
+
+
+    handleRemove = async (id, vaga) => {
+        
+        if(window.confirm('Dejea realmente remover essa vaga?')) {
+
+            try {
+                
+                const res = await apiMethods.delete(`vagas/${ id }`, { token: this.state.token })
+                
+                if(res.success) {
+                    
+                    let newList = this.state.vagas.slice(0);
+                    let indice = newList.indexOf(vaga);
+                    newList.splice(indice, 1);        
+                    
+                    this.setState({ vagas: newList });
+                    alert('Vaga removida com sucesso');
+                    return;
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
     }
     
     render() { 
@@ -42,7 +67,6 @@ class HomePageComponent extends Component {
                     ? <Link to="/vaga/new" className="btn btn-success">Cadastrar</Link>
                     : ''
                 }
-                
 
                 <ul className="list-unstyled row">
                     {
@@ -54,6 +78,7 @@ class HomePageComponent extends Component {
                                         title={ vaga.title }
                                         description={ vaga.description }
                                         id={ `/vaga/${ vaga._id }` }
+                                        remove={ this.handleRemove.bind(this, vaga._id, vaga) }
                                     />
                                 </li>
                             )
