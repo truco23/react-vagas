@@ -15,24 +15,29 @@ class HomePageComponent extends Component {
 
     state = {
         vagas: [],
-        token: ''
+        infoPages: [],
+        token: '',
+        page: 1
     };
 
     async componentDidMount() {
-
         
-        let vagas = await apiMethods.get('vagas');
-        
-        this.setState({ vagas });
-        console.log(vagas);
-        this.realTime();
-        
-        const token = apiLocalStorage.getToken();
-        if(token) {
-            this.setState({ token });
-        }
-        
+        this.loadVagas();
+        // this.realTime();
+        this.saveToken();
     };
+    
+    loadVagas = async (page = 1) => {
+        
+        let response = await apiMethods.get(`vagas?page=${ page }`);
+        const { docs, ...infoPages } = response;
+    
+        this.setState({ vagas: docs, infoPages, page });
+        console.log(this.state.vagas);
+        console.log(this.state.infoPages);
+
+        this.realTime()
+    }
 
     realTime() {
 
@@ -49,8 +54,16 @@ class HomePageComponent extends Component {
             console.log('atualizar a listagem');
             this.setState({ vagas: newList });
         });
-    }
+    };
 
+    saveToken = () => {
+
+        const token = apiLocalStorage.getToken();
+
+        if(token) {
+            this.setState({ token });
+        };
+    };
 
     handleRemove = async (id, vaga) => {
         
@@ -74,12 +87,45 @@ class HomePageComponent extends Component {
                 console.log(error.message);
             }
         }
+    };
+
+    handlePrevPage = () => {
+
+        console.log('anterior');
+        
+        const { page, infoPages } = this.state;
+
+        console.log(page);
+        console.log(infoPages);
+
+        if(page === 1) return;
+
+        const pageNumber = page - 1;
+
+        this.loadVagas(pageNumber);
     }
+
+    handleNextPage = () => {
+
+        console.log('proxima');
+        const { page, infoPages } = this.state;
+
+        console.log(page);
+        console.log(infoPages);
+
+        if(page === infoPages.pages) return;
+
+        const pageNumber = page + 1;
+
+        console.log(pageNumber);
+
+        this.loadVagas(pageNumber);
+    };
     
     render() { 
         const { vagas, token } = this.state;
 
-        return (  
+        return (
             <section className="container">
                 <MenuComponent />
                 <JumbotronComponent title="Vagas em aberto" />
@@ -107,6 +153,10 @@ class HomePageComponent extends Component {
                         })
                     }
                 </ul>
+                <div className="d-flex justify-content-between">
+                    <button className="btn btn-primary" disabled={ this.state.page === 1 } onClick={ this.handlePrevPage }>Anterior</button>
+                    <button className="btn btn-primary" disabled={ this.state.page === this.state.infoPages.pages } onClick={ this.handleNextPage }>Proxima</button>
+                </div>
             </section>
         );
     }

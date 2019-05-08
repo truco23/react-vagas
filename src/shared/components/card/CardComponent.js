@@ -27,7 +27,7 @@ class CardComponent extends Component {
 
         return (  
             <section className="card">
-                <header className="card-header bg-primary text-white text-center">
+                <header className="card-header bg-light text-center">
                     { title }
                 </header>
                 <div className="card-body">
