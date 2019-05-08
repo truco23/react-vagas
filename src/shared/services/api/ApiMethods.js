@@ -5,7 +5,7 @@ const api = apiUrl;
 class ApiMethods {
     
     setHeaders(...params) {
-
+        
         let headers;
 
         if(params[0].token) {
@@ -73,6 +73,21 @@ class ApiMethods {
         .then(res => res)
         .catch(erro => console.log(erro.message));
     };
+
+    delete(path, token) {
+        
+        let headers = this.setHeaders(token);
+        const body = JSON.stringify(token);     
+
+        return fetch(`${ apiUrl }/${ path }`, {
+            headers,
+            method: 'DELETE',
+            body
+        })
+        .then(res => res.json())
+        .then(res => res)
+        .catch(erro => console.log(erro.message));
+    }
 }
  
 export default ApiMethods;
