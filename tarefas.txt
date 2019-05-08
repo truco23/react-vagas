@@ -1,4 +1,4 @@
-- implementar o socketio no client para cadastro de vagas
+-ajustar idCategory para o select editar
 - implementar o socketio no client para alteração de vagas
 - implementar o socketio no client para remoção de vagas
 - criar sistema de mensagens

@@ -77,7 +77,7 @@ class VagaFormEditComponent extends Component {
                         onchange={ this.handleInputChange.bind(this) }
                         title={ this.state.description } 
                     />
-
+                    
                     <SelectComponent 
                         idCategory={ this.state.idCategory } 
                         onchange={ this.handleInputChange.bind(this) } 

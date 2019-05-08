@@ -39,20 +39,38 @@ class HomePageComponent extends Component {
         this.realTime()
     }
 
-    realTime() {
+    realTime = () => {
 
         let newList = this.state.vagas;
         const io = socket('http://localhost:3001');
         
-        io.on('vaga', vaga => {
+        this.realTimeNew(newList, io);
+        this.realTimeUpdate(newList, io);
+    };
+    
+    realTimeNew(newList, io) {
+
+        io.on('vaga-new', vaga => {
             console.log(vaga);
             console.log(newList);
             newList.unshift(vaga);
             console.log(newList);
             
-            
-            console.log('atualizar a listagem');
+            console.log('atualizar a listagem para cadastro');
             this.setState({ vagas: newList });
+        });
+    };
+
+    realTimeUpdate = (newList, io) => {
+
+        
+        io.on('vaga-edit', vaga => {
+
+            console.log(vaga);
+            console.log(newList);
+            
+            console.log('atualizar a listagem para update');
+            // this.setState({ vagas: newList });
         });
     };
 
