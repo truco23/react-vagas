@@ -69,8 +69,22 @@ class HomePageComponent extends Component {
             console.log(vaga);
             console.log(newList);
             
+            newList.forEach(data => {
+
+                if(data._id === vaga._id) {
+
+                    data._id = vaga._id;
+                    data.createdAt = vaga.createdAt;
+                    data.description = vaga.description;
+                    data.idCategory = vaga.idCategory;
+                    data.title = vaga.title;
+                    data.updatedAt = vaga.updatedAt;
+                }
+            });
+            
+            console.log(newList);
             console.log('atualizar a listagem para update');
-            // this.setState({ vagas: newList });
+            this.setState({ vagas: newList });
         });
     };
 
