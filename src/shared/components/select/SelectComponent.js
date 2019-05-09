@@ -23,12 +23,16 @@ class SelectComponent extends Component {
 
         return (  
             <div className="form-group">
-                <select className="form-control" name="idCategory" onChange={ onchange }>
+                <select 
+                    className="form-control" 
+                    name="idCategory" 
+                    onChange={ onchange }>
+                    
                     <option value="">Selecione um categoria</option>
                     {
                         categorias.length && categorias.map(categoria => (
                             <option 
-                                selected={ categoria._id === idCategory }
+                                selected={ categoria._id === idCategory }      
                                 key={ categoria._id } 
                                 value={ categoria._id }>
                                 { categoria.name }

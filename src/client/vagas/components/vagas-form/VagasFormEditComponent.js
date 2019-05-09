@@ -28,6 +28,7 @@ class VagaFormEditComponent extends Component {
         
         this.setState({ _id, title, description, idCategory });
         this.setState({ token });
+        this.teste(idCategory);
     }
     
     handleSubmit = async e => {
@@ -41,6 +42,12 @@ class VagaFormEditComponent extends Component {
             console.log(error);
         }
     };
+
+    teste = (id) => {
+
+        console.log(id);
+        
+    }
 
     handleInputChange = e => {
         
@@ -79,7 +86,7 @@ class VagaFormEditComponent extends Component {
                     />
                     
                     <SelectComponent 
-                        idCategory={ this.state.idCategory } 
+                        idCategory={ this.state.idCategory._id || '' } 
                         onchange={ this.handleInputChange.bind(this) } 
                     />
 

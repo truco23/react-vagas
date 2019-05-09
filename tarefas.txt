@@ -1,4 +1,3 @@
--ajustar idCategory para o select editar
 - implementar o socketio no client para alteração de vagas
 - implementar o socketio no client para remoção de vagas
 - criar sistema de mensagens
@@ -11,3 +10,5 @@
 - criar interceptors
 - mudar api para a listagem de vaga por id listar também o nome da categoria
 - verificar se api está com paginação
+
+- remover warning Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.
