@@ -7,6 +7,7 @@ import CardComponent from '../../../../shared/components/card/CardComponent';
 import JumbotronComponent from '../../../../shared/components/jumbotron/JumbotronComponent';
 import MenuComponent from '../../../../shared/components/menu/MenuComponent';
 import LocalStorageService from '../../../../shared/services/localStorage/LocalStorageService';
+import ModalWarning from '../../../../shared/components/modal/ModalWarning';
 
 const apiMethods = new ApiMethods();
 const apiLocalStorage = new LocalStorageService();
@@ -17,7 +18,8 @@ class HomePageComponent extends Component {
         vagas: [],
         infoPages: [],
         token: '',
-        page: 1
+        page: 1,
+        modal: false
     };
 
     async componentDidMount() {
@@ -163,10 +165,11 @@ class HomePageComponent extends Component {
     };
     
     render() { 
-        const { vagas, token } = this.state;
+        const { vagas, token, modal } = this.state;
 
         return (
             <section className="container">
+                <ModalWarning show={ modal } />
                 <MenuComponent />
                 <JumbotronComponent title="Vagas em aberto" />
 
