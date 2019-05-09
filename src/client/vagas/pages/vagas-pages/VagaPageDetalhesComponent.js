@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
-import ApiMethods from '../../../../shared/services/api/ApiMethods';
 import JumbotronComponent from '../../../../shared/components/jumbotron/JumbotronComponent';
 import VagasFormEditComponent from '../../components/vagas-form/VagasFormEditComponent';
-
-const apiMethods = new ApiMethods();
 
 class VagaPageDetalhesComponent extends Component {
 

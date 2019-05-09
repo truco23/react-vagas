@@ -46,6 +46,7 @@ class HomePageComponent extends Component {
         
         this.realTimeNew(newList, io);
         this.realTimeUpdate(newList, io);
+        this.realTimeRemove(newList, io);
     };
     
     realTimeNew(newList, io) {
@@ -85,6 +86,33 @@ class HomePageComponent extends Component {
             console.log(newList);
             console.log('atualizar a listagem para update');
             this.setState({ vagas: newList });
+        });
+    };
+
+    realTimeRemove = (newList, io) => {
+
+        io.on('vaga-remove', vaga => {
+            
+            console.log(vaga);
+            console.log('realtime para remove da vaga');
+            
+            for(let item of newList) {
+
+                if(item._id === vaga._id) {
+                    
+                    let indice = newList.indexOf(item);
+
+                    console.log('encontrado no indice ' + indice);
+                    console.log(item);
+                    console.log(newList);
+                    newList.splice(indice, 1)
+                    console.log(newList);
+
+                    this.setState({ vagas: newList });
+                    return;
+                }
+                
+            };
         });
     };
 
