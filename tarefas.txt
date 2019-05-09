@@ -1,5 +1,3 @@
-- implementar o socketio no client para alteração de vagas
-- implementar o socketio no client para remoção de vagas
 - criar sistema de mensagens
 
 - fazer a validação do formulario de cadastro

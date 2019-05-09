@@ -23,7 +23,6 @@ class HomePageComponent extends Component {
     async componentDidMount() {
         
         this.loadVagas();
-        // this.realTime();
         this.saveToken();
     };
     
@@ -52,12 +51,8 @@ class HomePageComponent extends Component {
     realTimeNew(newList, io) {
 
         io.on('vaga-new', vaga => {
-            console.log(vaga);
-            console.log(newList);
+
             newList.unshift(vaga);
-            console.log(newList);
-            
-            console.log('atualizar a listagem para cadastro');
             this.setState({ vagas: newList });
         });
     };
@@ -67,10 +62,7 @@ class HomePageComponent extends Component {
         
         io.on('vaga-edit', vaga => {
 
-            console.log(vaga);
-            console.log(newList);
-            
-            newList.forEach(data => {
+            for(let data of newList) {
 
                 if(data._id === vaga._id) {
 
@@ -81,10 +73,8 @@ class HomePageComponent extends Component {
                     data.title = vaga.title;
                     data.updatedAt = vaga.updatedAt;
                 }
-            });
+            };
             
-            console.log(newList);
-            console.log('atualizar a listagem para update');
             this.setState({ vagas: newList });
         });
     };
@@ -93,25 +83,15 @@ class HomePageComponent extends Component {
 
         io.on('vaga-remove', vaga => {
             
-            console.log(vaga);
-            console.log('realtime para remove da vaga');
-            
             for(let item of newList) {
 
                 if(item._id === vaga._id) {
                     
                     let indice = newList.indexOf(item);
-
-                    console.log('encontrado no indice ' + indice);
-                    console.log(item);
-                    console.log(newList);
-                    newList.splice(indice, 1)
-                    console.log(newList);
-
+                    newList.splice(indice, 1);
                     this.setState({ vagas: newList });
                     return;
                 }
-                
             };
         });
     };
